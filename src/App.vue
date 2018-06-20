@@ -5,7 +5,7 @@
       <AboutMe :category="categories['about-me']" :posts="posts['about-me']" :user="user"/>
       <Experience :category="categories.experience" :posts="posts"/>
       <Portfolio :category="categories.portfolio" :posts="posts.portfolio"/>
-      <Contacts :category="categories.contact" />
+      <Contacts :category="categories.contact" :posts="posts['about-me']"/>
       <Footer :posts="posts['about-me']"/>
     </template>
   </div>
@@ -31,13 +31,13 @@ export default {
     Experience,
     Portfolio,
     Contacts,
-    Footer
+    Footer,
   },
   data: () => ({
     isLoaded: false,
     categories: {},
     user: {},
-    posts: {}
+    posts: {},
   }),
 
   methods: {
@@ -71,9 +71,7 @@ export default {
 
         return acc
       }, {})
-
-
-    }
+    },
   },
 
   created() {
@@ -84,10 +82,10 @@ export default {
     ]).then(([categories, posts]) => {
       this.categories = group(categories)
       this.posts = this.groupPosts(posts, categories)
-      console.log(this.categories)
+      // console.log(this.posts)
       this.isLoaded = true
     })
-  }
+  },
 }
 </script>
 

@@ -21,7 +21,7 @@
           return { icon, url }
         })
       }
-    }
+    },
   }
 </script>
 
