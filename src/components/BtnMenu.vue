@@ -1,12 +1,19 @@
 <template>
-  <button class="btn-menu" @click="$refs.sandwich.classList.toggle('active')">
-    <span class="sandwich" ref="sandwich">
+  <button class="btn-menu">
+    <span class="sandwich" :class="{ active }">
       <span class="sw-topper"></span>
       <span class="sw-bottom"></span>
       <span class="sw-footer"></span>
     </span>
   </button>
 </template>
+
+<script>
+  export default {
+    name: 'BtnMenu',
+    props: ['active']
+  }
+</script>
 
 <style scoped lang="scss">
 .btn-menu {

@@ -9,8 +9,12 @@
 
     <div class="name-block">
       <div class="title-text">
-        <h1>{{ user.name }}</h1>
-        <p>{{ user.description }}</p>
+        <transition appear name="up-down">
+          <div><h1>{{ user.name }}</h1></div>
+        </transition>
+        <transition appear name="down-up">
+        <div><p>{{ user.description }}</p></div>
+        </transition>
       </div>
     </div>
   </header>
@@ -31,8 +35,17 @@
 
 <style scope lang="scss">
 @import '@/styles/variables.scss';
+@import '@/styles/animation.scss';
 
 $text-nav-bar: map-get($colors, light) !default;
+
+.up-down {
+  @include up-down(up);
+}
+
+.down-up {
+  @include up-down(down);
+}
 
 .header {
   padding: 20px;
@@ -74,7 +87,6 @@ $text-nav-bar: map-get($colors, light) !default;
     font-size: 2.3rem;
     padding: 2px 10px;
     text-align: center;
-    margin: 0;
     text-transform: uppercase;
     border: 2px solid $text-nav-bar;
     color: $text-nav-bar;
