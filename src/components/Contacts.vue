@@ -17,25 +17,24 @@
             </div>
           </div>
 
-
           <div class="col-md-6 col-sm-6">
-            <form @submit="validateForm" action="http://formspree.io/I.olena.stotska@gmail.com" target="_blank" method="post" novalidate="true">
+            <form @submit="formSubmited" action="http://formspree.io/I.olena.stotska@gmail.com" target="_blank" method="post">
               <label class="form-group">
-                <span class="star-required">*</span> Name:
-                <input type="text" name="name" v-model="name" placeholder="Your name"/>
-                <div class="errors-block">{{ errorName }}</div>
+                <span class="star-required">*</span> Full Name:
+                <input v-model="name" v-validity="isValidName" required/>
+                <div v-if="!isValidName">Please, enter Your Name!</div>
               </label>
               <label class="form-group">
                 <span class="star-required">*</span> E-mail:
-                <input type="email" name="email" v-model="email" placeholder="Your E-mail"/>
-                <div class="errors-block">{{ errorEmail }}</div>
+                <input type="email" v-model="email" v-validity="isValidEmail" required/>
+                <div v-if="!isValidEmail">Please, enter Your E-mail!</div>
               </label>
               <label class="form-group">
                 <span class="star-required">*</span> Your message:
-                <textarea name="message" v-model="message" placeholder="Your message"></textarea>
-                <div class="errors-block">{{ errorMessage }}</div>
+                <textarea v-model="message" v-validity="isValidMessage" required></textarea>
+                <div v-if="!isValidMessage">Please, enter Your Message!</div>
               </label>
-              <button class="btn-sent" type="submit">Send</button>
+              <button class="btn-sent">Send</button>
             </form>
           </div>
         </div>
@@ -56,12 +55,12 @@ export default {
     PersonalInfo,
   },
   data: () => ({
-    errorName: '',
-    errorEmail: '',
-    errorMessage: '',
-    name: null,
-    email: null,
-    message: null,
+    name: '',
+    email: '',
+    message: '',
+    isValidName: true,
+    isValidEmail: true,
+    isValidMessage: true
   }),
   computed: {
     groupedPosts() {
@@ -72,31 +71,10 @@ export default {
     }
   },
   methods: {
-    validateForm: function(event) {
-
-      if (!this.name) {
-        this.errorName = 'Please, enter Your name!'
-      }
-
-      if (!this.email) {
-        this.errorEmail = 'Please, enter Your email!'
-      } else if (!this.validEmail(this.email)) {
-        this.errorEmail = 'Valid email required.'
-      }
-
-      if (!this.message) {
-        this.errorMessage = 'Please, enter Your message!'
-      }
-
-      if (this.name && this.email && this.message) {
-        return true
-      }
-
-      event.preventDefault()
-    },
-    validEmail: function (email) {
-      const regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      return regEx.test(email)
+    formSubmited() {
+      setTimeout(() => {
+        this.name = this.email = this.message = ''
+      }, 100)
     }
   }
 }
@@ -173,6 +151,11 @@ export default {
       color: map-get($colors, secondary);
     }
 
+    div {
+      color: map-get($colors, error);
+      margin-top: 5px;
+    }
+
     input,
     textarea {
       display: block;
@@ -181,7 +164,7 @@ export default {
       margin-top: 5px;
       line-height: 4rem;
       text-indent: 1rem;
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       outline: none;
       background-color: transparent;
     }
