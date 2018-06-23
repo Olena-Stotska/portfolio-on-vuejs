@@ -5,9 +5,15 @@
     <div class="section-content">
       <div class="container-fluid">
         <div class="row">
-          <Description class="col-12 col-md" :post="groupedPosts['few-words-about-me']"/>
-          <Photo class="col-12 col-md text-center"/>
-          <PersonalInfo class="col-12 col-md" :post="groupedPosts['personal-information']" :userName="user.name"/>
+          <AnimateWhenVisible name="fadeLeft" class="col-12 col-md">
+            <Description :post="groupedPosts['few-words-about-me']"/>
+          </AnimateWhenVisible>
+          <AnimateWhenVisible name="bounce" class="col-12 col-md text-center">
+            <Photo/>
+          </AnimateWhenVisible>
+          <AnimateWhenVisible name="fadeRight" class="col-12 col-md">
+            <PersonalInfo :post="groupedPosts['personal-information']" :userName="user.name"/>
+          </AnimateWhenVisible>
         </div>
       </div>
     </div>

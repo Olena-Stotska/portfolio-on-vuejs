@@ -9,12 +9,8 @@
 
     <div class="name-block">
       <div class="title-text">
-        <transition appear name="up-down">
-          <div><h1>{{ user.name }}</h1></div>
-        </transition>
-        <transition appear name="down-up">
-        <div><p>{{ user.description }}</p></div>
-        </transition>
+        <AnimateWhenVisible name="fadeDown" :duration="2"><h1>{{ user.name }}</h1></AnimateWhenVisible>
+        <AnimateWhenVisible name="fadeUp" :duration="2"><p>{{ user.description }}</p></AnimateWhenVisible>
       </div>
     </div>
   </header>
@@ -35,17 +31,8 @@
 
 <style scope lang="scss">
 @import '@/styles/variables.scss';
-@import '@/styles/animation.scss';
 
 $text-nav-bar: map-get($colors, light) !default;
-
-.up-down {
-  @include up-down(up);
-}
-
-.down-up {
-  @include up-down(down);
-}
 
 .header {
   padding: 20px;

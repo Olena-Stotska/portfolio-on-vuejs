@@ -2,14 +2,14 @@
   <section id="cv" class="my-cv position">
     <Title :title="category.name" :description="category.description" />
 
-    <div class="section-content">
+    <AnimateWhenVisible name="fadeUp" :duration="1.5" class="section-content">
       <div class="container-fluid">
         <div class="row">
           <ExperienceGroup :posts="posts.works" class="col-12 col-md left" icon="icon-briefcase" title="Jobs"/>
           <ExperienceGroup :posts="posts.education" class="col-12 col-md right" icon="icon-graduation-cap" title="Education"/>
         </div>
       </div>
-    </div>
+    </AnimateWhenVisible>
   </section>
 </template>
 

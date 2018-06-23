@@ -1,8 +1,12 @@
 import Vue from 'vue'
-import App from './App.vue'
-import './directives/validity.js'
+import App from './App'
+import AnimateWhenVisible from './components/AnimateWhenVisible'
+
+import './directives/validity'
+
 import './styles/app.scss'
 
+Vue.component('AnimateWhenVisible', AnimateWhenVisible)
 Vue.config.productionTip = false;
 
 new Vue({

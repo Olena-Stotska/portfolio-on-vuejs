@@ -1,10 +1,12 @@
 <template>
-  <div class="caption">
-    <h2>{{ title }}</h2>
-    <div class="wrapper">
-      <div class="text-wrapper">{{ description }}</div>
+  <AnimateWhenVisible name="fadeUp">
+    <div class="caption">
+      <h2>{{ title }}</h2>
+      <div class="wrapper">
+        <div class="text-wrapper">{{ description }}</div>
+      </div>
     </div>
-  </div>
+  </AnimateWhenVisible>
 </template>
 
 <script>

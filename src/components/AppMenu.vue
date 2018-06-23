@@ -2,12 +2,12 @@
   <div>
     <BtnMenu @click.native="isMenuVisible = !isMenuVisible" :active="isMenuVisible"/>
     <transition name="fade">
-      <nav class="nav-bar" v-show="isMenuVisible">
+      <nav class="nav-bar" v-if="isMenuVisible" @click="scrolling">
         <ul @click="isMenuVisible = !isMenuVisible">
-          <li><a href="#about">About Me<span></span></a></li>
-          <li><a href="#cv">CV<span></span></a></li>
-          <li><a href="#portfolio">Portfolio<span></span></a></li>
-          <li><a href="#contact">Contact<span></span></a></li>
+          <li><AnimateWhenVisible name="fadeUp"><a href="#about">About Me<span></span></a></AnimateWhenVisible></li>
+          <li><AnimateWhenVisible name="fadeUp" :duration="1.3"><a href="#cv">CV<span></span></a></AnimateWhenVisible></li>
+          <li><AnimateWhenVisible name="fadeUp" :duration="1.6"><a href="#portfolio">Portfolio<span></span></a></AnimateWhenVisible></li>
+          <li><AnimateWhenVisible name="fadeUp" :duration="1.8"><a href="#contact">Contact<span></span></a></AnimateWhenVisible></li>
         </ul>
       </nav>
     </transition>
@@ -16,6 +16,7 @@
 
 <script>
   import BtnMenu from './BtnMenu'
+  import { animate } from '../utils'
 
   export default {
     name: 'AppMenu',
@@ -23,8 +24,32 @@
       BtnMenu
     },
     data: () => ({
-      isMenuVisible: false
-    })
+      isMenuVisible: false,
+      animation: null
+    }),
+    methods: {
+      scrolling(event) {
+        event.preventDefault()
+
+        if (this.animation) {
+          this.animation.cancel()
+        }
+
+        const href = event.target.getAttribute('href')
+        const scrollToEl = document.querySelector(href)
+        const pageY = window.pageYOffset
+
+        this.animation = animate({
+          duration: 600,
+          easing: p => p < .5 ? 4 * Math.pow(p, 3) : 4 * Math.pow(p - 1, 3) + 1,
+          draw(progress) {
+            document.documentElement.scrollTop = pageY + progress * (scrollToEl.offsetTop - pageY)
+          }
+        })
+      },
+
+
+    }
   }
 </script>
 
@@ -32,17 +57,6 @@
 @import '@/styles/variables.scss';
 
 $text-nav-bar: map-get($colors, light) !default;
-
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 1s;
-}
-
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-}
 
 .nav-bar {
   position: fixed;

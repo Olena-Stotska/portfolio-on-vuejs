@@ -11,14 +11,14 @@
         </ul>
       </div>
 
-      <div class="row justify-content-center">
-        <div class="col-md-4 col-lg-auto portfolio-item" v-for="post in filteredPosts">
+      <transition-group name="filter" tag="div" class="row justify-content-center">
+        <div class="col-md-4 col-lg-auto portfolio-item" v-for="post in filteredPosts" :key="post.id || post.slug">
           <img :src="post.media_url" alt="Alt"/>
           <div class="portfolio-link">
             <a :href="post.meta.site_url" class="popup_content" target="_blank">See</a>
           </div>
         </div>
-      </div>
+      </transition-group>
     </div>
   </section>
 </template>
@@ -63,6 +63,19 @@
 
   $bg-portfolio: map-get($colors, dark) !default;
   $btn: map-get($colors, secondary) !default;
+
+  .filter-enter-active, .filter-leave-active, .filter-move {
+    transition: all 1s;
+  }
+  .filter-enter, .filter-leave-to {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .filter-leave-active {
+    position: absolute;
+  }
+
 
   .my-portfolio {
     background-color: $bg-portfolio;

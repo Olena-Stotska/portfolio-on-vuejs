@@ -1,17 +1,5 @@
-@mixin up-down($direction) {
-  &-enter {
-    transform: scale(1.2) translate(0, if($direction == "up", -500%, 500%));
-    opacity: 0;
+$animationDuration: 1s !default;
 
-    &-to {
-      transform: scale(1) translate(0, 0);
-      opacity: 1;
-    }
-
-    &-active {
-      transition: all 2s ease-out;
-    }
-  }
-}
-
-
+@import '~vue2-animate/src/sass/make-transitions';
+@import '~vue2-animate/src/sass/animations/fading/all';
+@import '~vue2-animate/src/sass/animations/bouncing/all';
