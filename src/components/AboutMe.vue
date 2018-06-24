@@ -8,9 +8,7 @@
           <AnimateWhenVisible name="fadeLeft" class="col-12 col-md">
             <Description :post="groupedPosts['few-words-about-me']"/>
           </AnimateWhenVisible>
-          <AnimateWhenVisible name="bounce" class="col-12 col-md text-center">
-            <Photo/>
-          </AnimateWhenVisible>
+          <Photo class="col-12 col-md text-center"/>
           <AnimateWhenVisible name="fadeRight" class="col-12 col-md">
             <PersonalInfo :post="groupedPosts['personal-information']" :userName="user.name"/>
           </AnimateWhenVisible>

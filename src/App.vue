@@ -1,14 +1,18 @@
 <template>
-  <div class="wrapper">
-    <template v-if="isLoaded">
+  <transition name="fade" tag="div" class="wrapper">
+    <div class="wrapper" v-if="isLoaded" key="app">
       <FrontPage :user="user"/>
       <AboutMe :category="categories['about-me']" :posts="posts['about-me']" :user="user"/>
       <Experience :category="categories.experience" :posts="posts"/>
       <Portfolio :category="categories.portfolio" :posts="posts.portfolio"/>
       <Contacts :category="categories.contact" :posts="posts['about-me']"/>
       <Footer :posts="posts['about-me']"/>
-    </template>
-  </div>
+    </div>
+
+    <div class="loader wrapper" v-else key="loader">
+      <img src="./assets/img/preloader.gif" alt="Loading...">
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -75,6 +79,7 @@ export default {
   },
 
   created() {
+    document.body.classList.add('loading')
     Promise.all([
       this.getCategories(),
       this.getPosts(),
@@ -82,8 +87,8 @@ export default {
     ]).then(([categories, posts]) => {
       this.categories = group(categories)
       this.posts = this.groupPosts(posts, categories)
-      // console.log(this.posts)
       this.isLoaded = true
+      document.body.classList.remove('loading')
     })
   },
 }
@@ -91,6 +96,16 @@ export default {
 
 <style scoped lang="scss">
   .wrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
     height: 100%;
+  }
+
+  .loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 </style>

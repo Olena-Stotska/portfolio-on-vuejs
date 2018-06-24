@@ -8,6 +8,7 @@
           <li class="filter" :class="{ active: isFiltered('all') }" @click="filter('all')">All work</li>
           <li class="filter" :class="{ active: isFiltered('blog') }" @click="filter('blog')">Blogs</li>
           <li class="filter" :class="{ active: isFiltered('shop') }" @click="filter('shop')">Internet Shop</li>
+          <li class="filter" :class="{ active: isFiltered('landing') }" @click="filter('landing')">Landing Page</li>
         </ul>
       </div>
 
