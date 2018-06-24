@@ -10,7 +10,7 @@
     </div>
 
     <div class="loader wrapper" v-else key="loader">
-      <img src="./assets/img/preloader.gif" alt="Loading...">
+     <div class="spinner-loader"></div>
     </div>
   </transition>
 </template>
@@ -88,24 +88,58 @@ export default {
       this.categories = group(categories)
       this.posts = this.groupPosts(posts, categories)
       this.isLoaded = true
-      document.body.classList.remove('loading')
+      this.$nextTick(() => document.body.classList.remove('loading'))
     })
   },
 }
 </script>
 
 <style scoped lang="scss">
-  .wrapper {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
+$spinner-loader-color: rgba(#003, 0.3) !default;
+
+.wrapper {
+  height: 100%;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+
+@keyframes spinner-loader {
+  0%   {
+    transform: rotateZ(0deg);
   }
 
-  .loader {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  100% {
+    transform: rotateZ(360deg);
   }
+}
+
+.spinner-loader {
+  animation: spinner-loader 1500ms infinite linear;
+
+  border-radius: 0.5em;
+  box-shadow: $spinner-loader-color 1.5em 0 0 0,
+    $spinner-loader-color 1.1em 1.1em 0 0,
+    $spinner-loader-color 0 1.5em 0 0,
+    $spinner-loader-color -1.1em 1.1em 0 0,
+    $spinner-loader-color -1.5em 0 0 0,
+    $spinner-loader-color -1.1em -1.1em 0 0,
+    $spinner-loader-color 0 -1.5em 0 0,
+    $spinner-loader-color 1.1em -1.1em 0 0;
+  display: inline-block;
+  font-size: 10px;
+  width: 1em;
+  height: 1em;
+  margin: 1.5em;
+  overflow: hidden;
+  text-indent: 100%;
+}
 </style>
