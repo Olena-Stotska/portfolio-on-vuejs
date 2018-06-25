@@ -43,7 +43,7 @@
           duration: 600,
           easing: p => p < .5 ? 4 * Math.pow(p, 3) : 4 * Math.pow(p - 1, 3) + 1,
           draw(progress) {
-            document.documentElement.scrollTop = pageY + progress * (scrollToEl.offsetTop - pageY)
+            window.scrollTo(0, pageY + progress * (scrollToEl.offsetTop - pageY))
           }
         })
       },

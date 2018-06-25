@@ -28,23 +28,23 @@ export default {
 
   $bg-footer: map-get($colors, dark) !default;
 
-  /deep/.footer {
+  .footer {
     padding: 5px 30px 0 30px;
     background-color: $bg-footer;
     color: map-get($colors, light);
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
 
-    .social-wrap {
-      float: right;
+  /deep/ .social-wrap {
+    float: right;
 
-      i {
-        font-size: 2.4rem;
+    i {
+      font-size: 2.4rem;
 
-        &:hover {
-          color: map-get($colors, light);
-        }
+      &:hover {
+        color: map-get($colors, light);
       }
     }
   }

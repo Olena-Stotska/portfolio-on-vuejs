@@ -3,7 +3,6 @@ import App from './App'
 import AnimateWhenVisible from './components/AnimateWhenVisible'
 
 import './directives/validity'
-
 import './styles/app.scss'
 
 Vue.component('AnimateWhenVisible', AnimateWhenVisible)

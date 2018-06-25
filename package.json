@@ -5,7 +5,9 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "predeploy": "ssh freaks cd /var/www/lena.portfolio/wp-content/themes/MyTheme && rm -rf css/ fonts/img/ js/",
+    "deploy": "scp -r dist/* freaks:/var/www/lena.portfolio/wp-content/themes/MyTheme/"
   },
   "dependencies": {
     "bootstrap": "^4.1.1",
