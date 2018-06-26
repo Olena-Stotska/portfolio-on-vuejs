@@ -29,7 +29,7 @@ export default {
   $bg-footer: map-get($colors, dark) !default;
 
   .footer {
-    padding: 5px 30px 0 30px;
+    padding: 5px 20px 0 20px;
     background-color: $bg-footer;
     color: map-get($colors, light);
     display: flex;

@@ -95,6 +95,7 @@ export default {
 
   .contact-box {
     margin: 30px 0;
+    padding: 0 10px;
 
     h3 {
       text-align: left;
@@ -139,6 +140,10 @@ export default {
     &:focus {
       outline: none;
     }
+  }
+
+  form {
+    padding: 0 10px;
   }
 
   .form-group {

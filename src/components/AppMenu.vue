@@ -5,7 +5,7 @@
       <nav class="nav-bar" v-if="isMenuVisible" @click="scrolling">
         <ul @click="isMenuVisible = !isMenuVisible">
           <li><AnimateWhenVisible name="fadeUp"><a href="#about">About Me<span></span></a></AnimateWhenVisible></li>
-          <li><AnimateWhenVisible name="fadeUp" :duration="1.3"><a href="#cv">CV<span></span></a></AnimateWhenVisible></li>
+          <li><AnimateWhenVisible name="fadeUp" :duration="1.3"><a href="#experience">Experience<span></span></a></AnimateWhenVisible></li>
           <li><AnimateWhenVisible name="fadeUp" :duration="1.6"><a href="#portfolio">Portfolio<span></span></a></AnimateWhenVisible></li>
           <li><AnimateWhenVisible name="fadeUp" :duration="1.8"><a href="#contact">Contact<span></span></a></AnimateWhenVisible></li>
         </ul>

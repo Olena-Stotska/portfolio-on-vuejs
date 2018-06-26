@@ -1,5 +1,5 @@
 <template>
-  <section id="cv" class="my-cv position">
+  <section id="experience" class="my-cv position">
     <Title :title="category.name" :description="category.description" />
 
     <AnimateWhenVisible name="fadeUp" :duration="1.5" class="section-content">

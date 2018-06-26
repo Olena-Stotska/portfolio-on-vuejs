@@ -18,18 +18,25 @@
   position: fixed;
   z-index: 9998;
   top: 0;
+  right: 0;
   left: 0;
   bottom: 0;
   width: 100%;
   min-height: 100%;
   background-color: rgba(0, 0, 0, .5);
-  display: table;
   transition: opacity .3s ease;
 }
 
 .modal-wrapper {
-  display: table-cell;
-  vertical-align: middle;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 9998;
 }
 
 .modal-container {
