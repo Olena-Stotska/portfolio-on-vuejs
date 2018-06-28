@@ -20,20 +20,29 @@
           <div class="col-md-6 col-sm-6">
             <form @submit="formSubmited" action="http://formspree.io/I.olena.stotska@gmail.com" target="_blank" method="post">
               <label class="form-group">
-                <span class="star-required">*</span> Full Name:
+                <div class="title-input">
+                  <div><span class="star-required">*</span>Full Name:</div>
+                  <transition name="fadeRight"><div class="validation" v-if="!isValidName">Name is required!</div></transition>
+                </div>
                 <input v-model="name" v-validity="isValidName" required/>
-                <div v-if="!isValidName">Please, enter Your Name!</div>
               </label>
+
               <label class="form-group">
-                <span class="star-required">*</span> E-mail:
+                <div class="title-input">
+                  <div><span class="star-required">*</span>E-mail:</div>
+                  <transition name="fadeRight"><div class="validation" v-if="!isValidName">E-mail is required!</div></transition>
+                </div>
                 <input type="email" v-model="email" v-validity="isValidEmail" required/>
-                <div v-if="!isValidEmail">Please, enter Your E-mail!</div>
               </label>
+
               <label class="form-group">
-                <span class="star-required">*</span> Your message:
+                <div class="title-input">
+                  <div><span class="star-required">*</span>Message:</div>
+                  <transition name="fadeRight"><div class="validation" v-if="!isValidName">Enter something, please...</div></transition>
+                </div>
                 <textarea v-model="message" v-validity="isValidMessage" required></textarea>
-                <div v-if="!isValidMessage">Please, enter Your Message!</div>
               </label>
+
               <button class="btn-sent">Send</button>
             </form>
           </div>
@@ -156,9 +165,15 @@ export default {
       color: map-get($colors, secondary);
     }
 
-    div {
+    .title-input {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .validation {
       color: map-get($colors, error);
-      margin-top: 5px;
+      animation-duration: 0.5s;
     }
 
     input,
