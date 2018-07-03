@@ -44,11 +44,10 @@
           easing: p => p < .5 ? 4 * Math.pow(p, 3) : 4 * Math.pow(p - 1, 3) + 1,
           draw(progress) {
             window.scrollTo(0, pageY + progress * (scrollToEl.offsetTop - pageY))
-          }
+          },
+          done() { location.hash = href }
         })
       },
-
-
     }
   }
 </script>

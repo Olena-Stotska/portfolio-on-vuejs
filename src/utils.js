@@ -32,6 +32,8 @@ export function animate(options) {
 
     if (timeFraction < 1) {
       animationId = requestAnimationFrame(animate);
+    } else {
+      options.done()
     }
   });
 
